@@ -810,13 +810,39 @@ section {
    SECTION 3: ABOUT US
    ========================================== */
 .about {
-  padding-top: 180px; /* Increased top padding for premium whitespace transition directly from Hero */
+  padding-top: 70px; /* Reduced from 180px — overlaps hero bottom edge */
+  padding-bottom: 120px;
+  margin-top: -50px;  /* Overlap hero bottom by 50px for seamless transition */
+  position: relative;
+  z-index: 5;         /* Sits above hero's z-index:2 */
   background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.02) 0%, transparent 40%);
+}
+
+/* Premium gold divider line — replaces empty dead space */
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 160px;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent 0%, var(--color-gold) 40%, var(--color-lime) 60%, transparent 100%);
+  border-radius: 2px;
+  opacity: 0.6;
+}
+
+@media (max-width: 1024px) {
+  .about {
+    padding-top: 60px;
+    margin-top: -40px;
+  }
 }
 
 @media (max-width: 768px) {
   .about {
-    padding-top: 100px; /* Responsive spacing for tablets/mobiles */
+    padding-top: 50px;
+    margin-top: -30px;
   }
 }
 
