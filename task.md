@@ -1,0 +1,37 @@
+# Task Checklist — Tora Constructions Implementation
+
+- [x] Step 1: Source Curated High-Res Unsplash Image URLs
+    - [x] Hero luxury architecture render
+    - [x] Founder Ashok Neog professional portrait
+    - [x] Residential luxury villa visual
+    - [x] Commercial modern building visual
+    - [x] Interior design & Turnkey visuals
+- [x] Step 2: Implement Core HTML Structure (`index.html`)
+    - [x] Navigation header (sticky glass navbar)
+    - [x] Hero Section with floating stats
+    - [x] Statistics Count-up Section
+    - [x] About Section
+    - [x] Services Grid Section
+    - [x] Why Choose Us Section
+    - [x] Locations Map (Interactive SVG/HTML Nodes)
+    - [x] Process Timeline
+    - [x] Founder Message Section
+    - [x] Testimonials Slider Section
+    - [x] Contact & Inquiry Form
+    - [x] Footer
+- [x] Step 3: Implement Design System Styles (`style.css`)
+    - [x] Color, typography, spacing custom properties
+    - [x] Global styling and CSS base font loading (Plus Jakarta Sans, Inter)
+    - [x] Layout classes and flex/grid systems
+    - [x] Glassmorphic classes & transitions
+    - [x] Interactive state styles (buttons, card hover effects)
+- [x] Step 4: Implement Interaction & Micro-Animations (`main.js`)
+    - [x] Scroll reveal trigger (IntersectionObserver)
+    - [x] Magnetic CTA button physics
+    - [x] Parallax hero background movement
+    - [x] Numeric stats count-up trigger
+    - [x] Location interactive map markers
+    - [x] Testimonials navigation/auto-slide
+- [x] Step 5: Verification & Polish
+    - [x] Responsiveness testing
+    - [x] Hover states and transitions checklist
