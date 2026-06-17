@@ -1502,194 +1502,265 @@ section {
 }
 
 /* ==========================================
-   SECTION 8: FOUNDER SPOTLIGHT
+   SECTION 3.5: LEADERSHIP TEAM
    ========================================== */
-.founder {
-  background: radial-gradient(circle at 10% 50%, rgba(216, 155, 13, 0.06) 0%, transparent 50%);
+.leadership {
+  background: radial-gradient(circle at 10% 50%, rgba(216, 155, 13, 0.05) 0%, transparent 50%);
+  padding-top: 120px;
+  padding-bottom: 120px;
 }
 
-.founder-grid {
-  display: grid;
-  grid-template-columns: 0.85fr 1.15fr;
-  gap: 80px;
+.leadership-header {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 60px auto;
+}
+
+.leadership-container {
   max-width: 1200px;
   margin: 0 auto;
-  align-items: center;
 }
 
-.founder-img-wrapper {
-  position: relative;
-  height: 520px;
+/* Card design */
+.leadership-card {
+  background: var(--glass-white);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  border-radius: 28px;
+  box-shadow: var(--shadow-premium);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), 
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease;
   display: flex;
-  align-items: center;
+  overflow: hidden;
+}
+
+.leadership-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(216, 155, 13, 0.3);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* Featured Ashok Neog card - row layout on desktop */
+.leadership-featured {
+  margin-bottom: 50px;
+}
+
+.leadership-featured .leadership-card {
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.leadership-featured .leadership-photo-container {
+  width: 420px;
+  height: 560px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.leadership-featured .leadership-content {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
   justify-content: center;
 }
 
-/* Luxury frame styling */
-.founder-frame {
-  width: 90%;
-  height: 90%;
-  border-radius: 36px;
-  overflow: hidden;
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--shadow-premium);
-  position: relative;
-  z-index: 2;
+/* Sibling cards grid: Ramya & Siddhartha */
+.leadership-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  justify-content: center;
 }
 
-.founder-frame img {
+.leadership-grid .leadership-card {
+  flex-direction: column;
+  max-width: 420px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.leadership-grid .leadership-photo-container {
+  width: 100%;
+  height: 460px;
+  position: relative;
+}
+
+.leadership-grid .leadership-content {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+/* Photo and Placeholder */
+.leadership-photo-container {
+  background: rgba(11, 31, 51, 0.5);
+  overflow: hidden;
+  position: relative;
+}
+
+.leadership-photo {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center top; /* Show face, not body — critical for portrait photos */
-  transition: transform 0.6s ease;
+  object-position: center top;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   display: block;
 }
 
-.founder-img-wrapper:hover .founder-frame img {
-  transform: scale(1.03);
+.leadership-card:hover .leadership-photo {
+  transform: scale(1.04);
 }
 
-.founder-frame-glow {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  right: -15px;
-  bottom: -15px;
-  border-radius: 36px;
-  border: 2px solid var(--color-gold);
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.3;
-  transition: all 0.4s ease;
-}
-
-.founder-img-wrapper:hover .founder-frame-glow {
-  top: 25px;
-  left: 25px;
-  right: -25px;
-  bottom: -25px;
-  opacity: 0.6;
-}
-
-.founder-message {
-  max-width: 620px;
-}
-
-.founder-title-group {
-  margin-bottom: 30px;
-}
-
-.founder-name {
-  font-size: 42px;
+/* Fallback placeholder */
+.leadership-placeholder {
+  display: none;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 48px;
   font-weight: 700;
-  margin-bottom: 4px;
+  color: var(--color-lime);
+  background: linear-gradient(135deg, #0B1F33 0%, #1a3857 50%, #D89B0D 100%);
+  text-shadow: 0 0 15px rgba(215, 240, 74, 0.3);
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-.founder-title {
-  font-size: 15px;
+.leadership-featured .leadership-placeholder {
+  font-size: 64px;
+}
+
+/* Card content typography */
+.leader-role {
+  font-size: 13px;
   color: var(--color-gold);
   text-transform: uppercase;
   letter-spacing: 0.1em;
   font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
 }
 
-.founder-text {
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--text-secondary);
-  margin-bottom: 24px;
-}
-
-.founder-quote {
-  font-size: 20px;
-  line-height: 1.6;
-  font-weight: 500;
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  color: var(--text-primary);
-  border-left: 3px solid var(--color-gold);
-  padding-left: 24px;
-  margin: 32px 0;
-  font-style: italic;
-}
-
-.founder-signature {
-  margin-top: 32px;
-}
-
-.signature-name {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 18px;
+.leader-name {
+  font-size: 32px;
   font-weight: 700;
   color: var(--text-primary);
+  margin-bottom: 20px;
+  line-height: 1.2;
 }
 
-.signature-title {
-  font-size: 13px;
+.leadership-grid .leader-name {
+  font-size: 26px;
+  margin-bottom: 16px;
+}
+
+.leader-bio {
+  font-size: 15px;
+  line-height: 1.7;
   color: var(--text-secondary);
+  margin-bottom: 16px;
 }
 
+.leader-bio:last-of-type {
+  margin-bottom: 0;
+}
+
+/* Quote inside Featured Card */
+.leadership-quote {
+  margin-top: 30px;
+  padding-left: 20px;
+  border-left: 2.5px solid var(--color-gold);
+}
+
+.quote-text {
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.quote-author {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Responsive overrides */
 @media (max-width: 1024px) {
-  .founder-grid {
-    grid-template-columns: 1fr;
-    gap: 60px;
+  .leadership-featured .leadership-card {
+    flex-direction: column;
   }
-  .founder-img-wrapper {
-    width: 100%;
-    height: 460px;
+  .leadership-featured .leadership-photo-container {
+    width: 100% !important;
+    height: 500px !important;
   }
-  .founder-frame {
-    width: 100%;
-    height: 100%;
-    border-radius: 28px;
+  .leadership-featured .leadership-content {
+    padding: 40px;
   }
-  .founder-frame-glow {
-    border-radius: 28px;
+  .leadership-grid {
+    gap: 30px;
+  }
+  .leadership-grid .leadership-card {
+    max-width: 100% !important;
+  }
+  .leadership-grid .leadership-photo-container {
+    height: 400px;
   }
 }
 
 @media (max-width: 768px) {
-  .founder-img-wrapper {
-    width: 100%;
-    height: 420px; /* Minimum height for face visibility */
-    justify-content: flex-start;
+  .leadership {
+    padding-top: 80px;
+    padding-bottom: 80px;
   }
-  .founder-frame {
-    width: 100%;
-    height: 100%;
-    border-radius: 24px;
+  .leadership-header {
+    margin-bottom: 40px;
   }
-  .founder-frame-glow {
-    border-radius: 24px;
-    top: 10px;
-    left: 10px;
-    right: -10px;
-    bottom: -10px;
+  .leadership-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
   }
-  .founder-message {
-    max-width: 100%;
-    padding: 0;
+  .leadership-featured .leadership-photo-container {
+    height: 400px !important;
   }
-  .founder-name {
-    font-size: 32px;
+  .leadership-grid .leadership-photo-container {
+    height: 380px;
   }
-  .founder-quote {
-    font-size: 16px;
-    padding-left: 16px;
-    margin: 24px 0;
+  .leader-name {
+    font-size: 28px;
   }
-  .founder-text {
-    font-size: 15px;
+  .leadership-grid .leader-name {
+    font-size: 24px;
   }
 }
 
 @media (max-width: 480px) {
-  .founder-img-wrapper {
-    width: 100%;
-    height: 380px;
+  .leadership-featured .leadership-photo-container {
+    height: 320px !important;
   }
-  .founder-name {
-    font-size: 28px;
+  .leadership-grid .leadership-photo-container {
+    height: 300px;
+  }
+  .leadership-featured .leadership-content {
+    padding: 30px 20px;
+  }
+  .leadership-grid .leadership-content {
+    padding: 30px 20px;
+  }
+  .leader-name {
+    font-size: 24px;
+  }
+  .leadership-grid .leader-name {
+    font-size: 22px;
   }
 }
 
