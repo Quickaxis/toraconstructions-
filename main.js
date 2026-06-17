@@ -224,11 +224,11 @@ document.addEventListener('DOMContentLoaded', () => {
       details: 'Construction and planning services for homes, commercial spaces, and turnkey development.'
     },
     {
-      slug: 'borboruah',
-      name: 'Borboruah',
-      lat: 27.4436,
-      lng: 94.9631,
-      details: 'Residential and commercial construction support with planning and execution services.'
+      slug: 'dhemaji',
+      name: 'Dhemaji',
+      lat: 27.4811,
+      lng: 94.5574,
+      details: 'Residential, commercial, architecture, interior, and turnkey construction service coverage.'
     },
     {
       slug: 'sivasagar',
