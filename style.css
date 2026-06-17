@@ -810,8 +810,8 @@ section {
    SECTION 3: ABOUT US
    ========================================== */
 .about {
-  padding-top: 70px; /* Reduced from 180px — overlaps hero bottom edge */
-  padding-bottom: 120px;
+  padding-top: 50px; /* Shorter section height */
+  padding-bottom: 60px; /* Shorter section height */
   margin-top: -50px;  /* Overlap hero bottom by 50px for seamless transition */
   position: relative;
   z-index: 5;         /* Sits above hero's z-index:2 */
@@ -834,14 +834,16 @@ section {
 
 @media (max-width: 1024px) {
   .about {
-    padding-top: 60px;
+    padding-top: 40px;
+    padding-bottom: 50px;
     margin-top: -40px;
   }
 }
 
 @media (max-width: 768px) {
   .about {
-    padding-top: 50px;
+    padding-top: 30px;
+    padding-bottom: 40px;
     margin-top: -30px;
   }
 }
@@ -881,9 +883,9 @@ section {
 
 .about-text p {
   color: var(--text-secondary);
-  margin-bottom: 30px;
+  margin-bottom: 24px;
   font-size: 16px;
-  line-height: 1.8;
+  line-height: 1.95; /* Increased line spacing slightly */
 }
 
 .about-bullets {
@@ -933,7 +935,7 @@ section {
   bottom: 0;
   right: 0;
   width: 70%;
-  padding: 30px;
+  padding: 20px; /* Made compact from 30px */
   z-index: 3;
 }
 
