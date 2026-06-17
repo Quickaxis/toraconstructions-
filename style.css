@@ -228,6 +228,7 @@ section {
   justify-content: space-between;
   align-items: center;
   transition: all 0.4s ease;
+  overflow: visible; /* Prevents logo cropping */
 }
 
 .navbar.scrolled {
@@ -240,19 +241,23 @@ section {
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  min-height: 64px;
+  overflow: visible;
   text-decoration: none;
 }
 
 .brand-logo-img {
-  height: 64px; /* Desktop height 60px-70px */
-  width: auto;
+  width: 58px;
+  height: 58px;
   object-fit: contain;
+  object-position: center;
   image-rendering: auto;
   mix-blend-mode: multiply;
   filter: contrast(1.1) brightness(1.05); /* Clean off-white artifacts and boost brightness */
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: block;
+  flex-shrink: 0;
 }
 
 .brand-logo-text {
@@ -270,7 +275,8 @@ section {
 }
 
 .navbar.scrolled .brand-logo-img {
-  height: 52px;
+  width: 48px;
+  height: 48px;
 }
 
 .navbar.scrolled .brand-logo-text {
@@ -279,10 +285,16 @@ section {
 
 @media (max-width: 768px) {
   .brand-logo-img {
+    width: 48px;
     height: 48px;
   }
   .navbar.scrolled .brand-logo-img {
+    width: 38px;
     height: 38px;
+  }
+  .brand-logo {
+    min-height: 56px;
+    gap: 10px;
   }
   .brand-logo-text {
     font-size: 18px;
