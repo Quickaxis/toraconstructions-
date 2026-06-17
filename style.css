@@ -2010,10 +2010,20 @@ section {
   margin-bottom: 4px;
 }
 
-.contact-detail-content p,
+.contact-detail-content p {
+  font-size: 16px;
+  font-weight: 500;
+}
+
 .contact-detail-content a {
   font-size: 16px;
   font-weight: 500;
+  color: var(--text-primary);
+  transition: color 0.3s ease;
+}
+
+.contact-detail-content a:hover {
+  color: var(--color-gold);
 }
 
 .contact-form-panel {

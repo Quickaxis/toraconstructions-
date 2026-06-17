@@ -79,3 +79,23 @@ To prevent generic low-fidelity placeholders, we integrated premium curated arch
 
 ### Browser Compatibility:
 *   Verified CSS backdrop blur effects and structural layouts are compliant on Chrome, Safari, Edge, and Firefox.
+
+---
+
+## 5. Contact Section & Phone Details Updates (June 2026)
+
+*   **Global Phone Details Update:**
+    *   Replaced the old phone number `+91 96781 17192` everywhere across the website.
+    *   Configured the correct Main Number: `+91 84718 87311` (with `tel:+918471887311` links).
+    *   Configured the Alternate Number: `+91 92822 15123` (with `tel:+919282215123` links).
+*   **Contact Section Left Panel:**
+    *   Redesigned the "Call or WhatsApp" block to display both Main and Alternate phone numbers as clickable, distinct call links.
+    *   Verified "Main Office" address and "Service Coverage" are displayed correctly.
+*   **Inquiry Form Dropdowns & Placeholders:**
+    *   Updated the phone placeholder to `e.g. +91 84718 87311`.
+    *   Cleaned and standardized the "Service Needed" dropdown options (`Residential Construction`, `Commercial Construction`, `Architecture and Planning`, `Interior Design`, `Turnkey Construction`, `Renovation and Remodeling`).
+    *   Replaced `Borboruah` with `Dhemaji` inside the "Location in Assam" dropdown and updated options to match exactly (`Dibrugarh`, `Chabua`, `Dhemaji`, `Sivasagar`, `Tinsukia`, `Other parts of Assam`).
+*   **Inquiry Submission Redirect to WhatsApp:**
+    *   Reconfigured the main contact form submit listener in `main.js` to extract fields, perform client-side validation, compile a customized WhatsApp message, encode it with `encodeURIComponent`, and execute a direct redirect to the main WhatsApp number: `https://wa.me/918471887311?text=`.
+    *   Integrated a premium loading and success state on the page post-redirection.
+    *   Updated the consultation modal form's WhatsApp endpoint to the new main number as well.

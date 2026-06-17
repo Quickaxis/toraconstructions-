@@ -499,15 +499,40 @@ document.addEventListener('DOMContentLoaded', () => {
     contactForm.addEventListener('submit', (e) => {
       e.preventDefault();
       
+      const name = document.getElementById('clientName').value.trim();
+      const phone = document.getElementById('clientPhone').value.trim();
+      const service = document.getElementById('projectType').value;
+      const location = document.getElementById('projectLocation').value;
+      const details = document.getElementById('projectDesc').value.trim();
+
+      // Validate required fields
+      if (!name || !phone || !service || !location || !details) {
+        alert("Please fill out all required fields before proceeding.");
+        return;
+      }
+
       const submitBtn = contactForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.textContent;
       
-      submitBtn.textContent = 'Sending...';
+      submitBtn.textContent = 'Redirecting...';
       submitBtn.disabled = true;
 
-      // Simulate network request
+      // Compile WhatsApp message
+      const message = `Hello Tora Constructions, I would like to submit an inquiry.\n\n` +
+                      `Full Name: ${name}\n` +
+                      `Phone Number: ${phone}\n` +
+                      `Service Needed: ${service}\n` +
+                      `Location: ${location}\n` +
+                      `Project Details: ${details}\n\n` +
+                      `Please contact me for further discussion.`;
+
+      const whatsappUrl = `https://wa.me/918471887311?text=${encodeURIComponent(message)}`;
+
+      // Simulate a brief premium loading phase for UX and then open WhatsApp
       setTimeout(() => {
-        // Create success popup
+        window.open(whatsappUrl, '_blank');
+        
+        // Show success state on form area
         const formParent = contactForm.parentElement;
         contactForm.style.display = 'none';
         
@@ -520,11 +545,11 @@ document.addEventListener('DOMContentLoaded', () => {
             <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
             <polyline points="22 4 12 14.01 9 11.01"></polyline>
           </svg>
-          <h3 style="font-size:24px; margin-bottom:16px;">Inquiry Received Successfully</h3>
+          <h3 style="font-size:24px; margin-bottom:16px;">Inquiry Redirected</h3>
           <p style="color:var(--text-secondary); max-width:400px; margin: 0 auto 32px auto;">
-            Thank you for reaching out to Tora Constructions. Ashok Neog or our premium client team will contact you within 24 business hours at +91 96781 17192.
+            Thank you for reaching out to Tora Constructions. Your inquiry details have been sent to our main WhatsApp support line (+91 84718 87311).
           </p>
-          <button class="btn btn-secondary" id="resetFormBtn">Send Another Message</button>
+          <button class="btn btn-secondary" id="resetFormBtn">Send Another Inquiry</button>
         `;
         formParent.appendChild(successMsg);
 
@@ -535,8 +560,7 @@ document.addEventListener('DOMContentLoaded', () => {
           submitBtn.textContent = originalText;
           submitBtn.disabled = false;
         });
-
-      }, 1500);
+      }, 800);
     });
   }
 
@@ -646,7 +670,7 @@ document.addEventListener('DOMContentLoaded', () => {
                       `Project Details: ${projectDetails}\n\n` +
                       `Please contact me for further discussion.`;
 
-      const whatsappUrl = `https://wa.me/919678117192?text=${encodeURIComponent(message)}`;
+      const whatsappUrl = `https://wa.me/918471887311?text=${encodeURIComponent(message)}`;
       
       // Open WhatsApp in a new tab
       window.open(whatsappUrl, '_blank');

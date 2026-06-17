@@ -696,7 +696,10 @@
               </div>
               <div class="contact-detail-content">
                 <h4>Call or WhatsApp</h4>
-                <a href="tel:+919678117192" id="contactPhoneLink">+91 96781 17192</a>
+                <div style="display: flex; flex-direction: column; gap: 4px; margin-top: 4px;">
+                  <span style="font-size: 16px; font-weight: 500; color: var(--text-secondary);">Main: <a href="tel:+918471887311" id="contactPhoneLink">+91 84718 87311</a></span>
+                  <span style="font-size: 16px; font-weight: 500; color: var(--text-secondary);">Alternate: <a href="tel:+919282215123" id="contactPhoneAlternateLink">+91 92822 15123</a></span>
+                </div>
               </div>
             </div>
 
@@ -739,19 +742,19 @@
 
               <div class="form-group">
                 <label for="clientPhone">Phone Number</label>
-                <input type="tel" id="clientPhone" placeholder="e.g. +91 98765 43210" required>
+                <input type="tel" id="clientPhone" placeholder="e.g. +91 84718 87311" required>
               </div>
 
               <div class="form-group full-width">
                 <label for="projectType">Service Needed</label>
                 <select id="projectType" required>
                   <option value="" disabled selected>Select service type</option>
-                  <option value="residential">Residential Luxury Villa</option>
-                  <option value="commercial">Commercial Hub / Offices</option>
-                  <option value="architecture">Architectural Planning & approvals</option>
-                  <option value="interior">Luxury Interior Design</option>
-                  <option value="turnkey">Complete Turnkey Construction</option>
-                  <option value="remodel">Renovation & Structural facelift</option>
+                  <option value="Residential Construction">Residential Construction</option>
+                  <option value="Commercial Construction">Commercial Construction</option>
+                  <option value="Architecture and Planning">Architecture and Planning</option>
+                  <option value="Interior Design">Interior Design</option>
+                  <option value="Turnkey Construction">Turnkey Construction</option>
+                  <option value="Renovation and Remodeling">Renovation and Remodeling</option>
                 </select>
               </div>
 
@@ -759,12 +762,12 @@
                 <label for="projectLocation">Location in Assam</label>
                 <select id="projectLocation" required>
                   <option value="" disabled selected>Select your location</option>
-                  <option value="dibrugarh">Dibrugarh</option>
-                  <option value="chabua">Chabua</option>
-                  <option value="dhemaji">Dhemaji</option>
-                  <option value="sivasagar">Sivasagar</option>
-                  <option value="tinsukia">Tinsukia</option>
-                  <option value="other">Other parts of Assam</option>
+                  <option value="Dibrugarh">Dibrugarh</option>
+                  <option value="Chabua">Chabua</option>
+                  <option value="Dhemaji">Dhemaji</option>
+                  <option value="Sivasagar">Sivasagar</option>
+                  <option value="Tinsukia">Tinsukia</option>
+                  <option value="Other parts of Assam">Other parts of Assam</option>
                 </select>
               </div>
 
@@ -832,7 +835,7 @@
         <ul style="color: var(--text-secondary); font-size:14px; gap:16px;">
           <li style="display:flex; align-items:center; gap:10px;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--color-gold);"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            <a href="tel:+919678117192" style="color:inherit;">+91 96781 17192</a>
+            <a href="tel:+918471887311" style="color:inherit;">+91 84718 87311</a>
           </li>
           <li style="display:flex; align-items:flex-start; gap:10px;">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:var(--color-gold); margin-top:3px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
@@ -871,13 +874,13 @@
         <p class="consultation-text">Speak with Tora Constructions about your residential, commercial, architecture, interior, or turnkey construction requirement.</p>
         
         <div class="consultation-buttons">
-          <a href="tel:+919678117192" class="consultation-phone-btn">
+          <a href="tel:+918471887311" class="consultation-phone-btn">
             <span class="phone-label">Main Number</span>
-            <span class="phone-number">+91 96781 17192</span>
+            <span class="phone-number">+91 84718 87311</span>
           </a>
           <a href="tel:+919282215123" class="consultation-phone-btn">
             <span class="phone-label">Alternate Number</span>
-            <span class="phone-number">9282215123</span>
+            <span class="phone-number">+91 92822 15123</span>
           </a>
         </div>
 
@@ -929,9 +932,9 @@
                 <option value="Dibrugarh">Dibrugarh</option>
                 <option value="Chabua">Chabua</option>
                 <option value="Dhemaji">Dhemaji</option>
-                <option value="Tinsukia">Tinsukia</option>
                 <option value="Sivasagar">Sivasagar</option>
-                <option value="Other">Other</option>
+                <option value="Tinsukia">Tinsukia</option>
+                <option value="Other parts of Assam">Other parts of Assam</option>
               </select>
             </div>
           </div>
