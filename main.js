@@ -419,4 +419,120 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ==========================================
+  // PREMIUM CONSULTATION MODAL ACTIONS
+  // ==========================================
+  const consultationModal = document.getElementById('consultationModal');
+  const consultationOverlay = document.getElementById('consultationOverlay');
+  const consultationClose = document.getElementById('consultationClose');
+  const heroCtaConsult = document.getElementById('heroCtaConsult');
+  
+  const consultationInfoView = document.getElementById('consultationInfoView');
+  const consultationFormView = document.getElementById('consultationFormView');
+  const openWhatsappForm = document.getElementById('openWhatsappForm');
+  const consultationBack = document.getElementById('consultationBack');
+  const consultationForm = document.getElementById('consultationForm');
+
+  const openModal = () => {
+    if (consultationModal) {
+      consultationModal.classList.add('active');
+      consultationModal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+      
+      // Reset views to info view
+      if (consultationInfoView && consultationFormView) {
+        consultationInfoView.classList.add('active');
+        consultationFormView.classList.remove('active');
+      }
+    }
+  };
+
+  const closeModal = () => {
+    if (consultationModal) {
+      consultationModal.classList.remove('active');
+      consultationModal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      if (consultationForm) {
+        consultationForm.reset();
+      }
+    }
+  };
+
+  if (heroCtaConsult && consultationModal) {
+    heroCtaConsult.addEventListener('click', (e) => {
+      e.preventDefault();
+      openModal();
+    });
+  }
+
+  if (consultationOverlay) {
+    consultationOverlay.addEventListener('click', closeModal);
+  }
+
+  if (consultationClose) {
+    consultationClose.addEventListener('click', closeModal);
+  }
+
+  // Escape key close
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && consultationModal && consultationModal.classList.contains('active')) {
+      closeModal();
+    }
+  });
+
+  // Switch to Form view
+  if (openWhatsappForm && consultationInfoView && consultationFormView) {
+    openWhatsappForm.addEventListener('click', () => {
+      consultationInfoView.classList.remove('active');
+      consultationFormView.classList.add('active');
+    });
+  }
+
+  // Back button view transition
+  if (consultationBack && consultationInfoView && consultationFormView) {
+    consultationBack.addEventListener('click', () => {
+      consultationFormView.classList.remove('active');
+      consultationInfoView.classList.add('active');
+    });
+  }
+
+  // Handle Form submit & WhatsApp URL generation
+  if (consultationForm) {
+    consultationForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      
+      const name = document.getElementById('whatsappName').value.trim();
+      const phone = document.getElementById('whatsappPhone').value.trim();
+      const projectType = document.getElementById('whatsappProjectType').value;
+      const projectLocation = document.getElementById('whatsappProjectLocation').value;
+      const preferredDate = document.getElementById('whatsappPreferredDate').value;
+      const preferredTime = document.getElementById('whatsappPreferredTime').value;
+      const projectDetails = document.getElementById('whatsappProjectDetails').value.trim();
+
+      // Simple validation check
+      if (!name || !phone || !projectType || !projectLocation || !preferredDate || !preferredTime || !projectDetails) {
+        alert("Please fill out all required fields before proceeding.");
+        return;
+      }
+
+      const message = `Hello Tora Constructions, I would like to book a consultation.\n\n` +
+                      `Name: ${name}\n` +
+                      `Phone: ${phone}\n` +
+                      `Project Type: ${projectType}\n` +
+                      `Project Location: ${projectLocation}\n` +
+                      `Preferred Date: ${preferredDate}\n` +
+                      `Preferred Time: ${preferredTime}\n` +
+                      `Project Details: ${projectDetails}\n\n` +
+                      `Please contact me for further discussion.`;
+
+      const whatsappUrl = `https://wa.me/919678117192?text=${encodeURIComponent(message)}`;
+      
+      // Open WhatsApp in a new tab
+      window.open(whatsappUrl, '_blank');
+      
+      // Close modal after redirection
+      closeModal();
+    });
+  }
+
 });

@@ -895,6 +895,117 @@
     </div>
   </footer>
 
+  <!-- ==========================================
+       CONSULTATION MODAL (POPUP)
+       ========================================== -->
+  <div class="consultation-modal-container" id="consultationModal" aria-hidden="true" role="dialog">
+    <div class="consultation-overlay" id="consultationOverlay"></div>
+    <div class="glass-card consultation-tile" id="consultationTile">
+      <button class="consultation-close" id="consultationClose" aria-label="Close consultation modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- View 1: Main Info & Call options -->
+      <div class="consultation-view active" id="consultationInfoView">
+        <h2 class="consultation-title"><span class="highlight-lime">Free Consultation</span></h2>
+        <p class="consultation-text">Speak with Tora Constructions about your residential, commercial, architecture, interior, or turnkey construction requirement.</p>
+        
+        <div class="consultation-buttons">
+          <a href="tel:+919678117192" class="consultation-phone-btn">
+            <span class="phone-label">Main Number</span>
+            <span class="phone-number">+91 96781 17192</span>
+          </a>
+          <a href="tel:+919282215123" class="consultation-phone-btn">
+            <span class="phone-label">Alternate Number</span>
+            <span class="phone-number">9282215123</span>
+          </a>
+        </div>
+
+        <button class="btn btn-primary consultation-whatsapp-trigger" id="openWhatsappForm">
+          Book Consultation on WhatsApp
+          <span class="btn-arrow">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </span>
+        </button>
+      </div>
+
+      <!-- View 2: Booking Form -->
+      <div class="consultation-view" id="consultationFormView">
+        <button class="consultation-back-btn" id="consultationBack" aria-label="Back to main phone options">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 6px;"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          Back
+        </button>
+        <h2 class="consultation-title"><span class="highlight-lime">WhatsApp Booking</span></h2>
+        
+        <form id="consultationForm" class="consultation-form">
+          <div class="form-group-row">
+            <div class="form-field">
+              <label for="whatsappName">Full Name *</label>
+              <input type="text" id="whatsappName" required placeholder="Enter your full name">
+            </div>
+            <div class="form-field">
+              <label for="whatsappPhone">Phone Number *</label>
+              <input type="tel" id="whatsappPhone" required placeholder="Enter your phone number">
+            </div>
+          </div>
+
+          <div class="form-group-row">
+            <div class="form-field">
+              <label for="whatsappProjectType">Project Type *</label>
+              <select id="whatsappProjectType" required>
+                <option value="" disabled selected>Select project type</option>
+                <option value="Residential Construction">Residential Construction</option>
+                <option value="Commercial Construction">Commercial Construction</option>
+                <option value="Architecture and Planning">Architecture and Planning</option>
+                <option value="Interior Design">Interior Design</option>
+                <option value="Turnkey Construction">Turnkey Construction</option>
+                <option value="Renovation and Remodeling">Renovation and Remodeling</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label for="whatsappProjectLocation">Project Location *</label>
+              <select id="whatsappProjectLocation" required>
+                <option value="" disabled selected>Select location</option>
+                <option value="Dibrugarh">Dibrugarh</option>
+                <option value="Chabua">Chabua</option>
+                <option value="Borboruah">Borboruah</option>
+                <option value="Tinsukia">Tinsukia</option>
+                <option value="Sivasagar">Sivasagar</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group-row">
+            <div class="form-field">
+              <label for="whatsappPreferredDate">Preferred Date *</label>
+              <input type="date" id="whatsappPreferredDate" required>
+            </div>
+            <div class="form-field">
+              <label for="whatsappPreferredTime">Preferred Time *</label>
+              <input type="time" id="whatsappPreferredTime" required>
+            </div>
+          </div>
+
+          <div class="form-field full-width">
+            <label for="whatsappProjectDetails">Project Details *</label>
+            <textarea id="whatsappProjectDetails" required rows="3" placeholder="Describe your requirement..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="submitWhatsappBooking" style="width: 100%; margin-top: 10px;">
+            Submit on WhatsApp
+            <span class="btn-arrow">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="main.js"></script>
 </body>
