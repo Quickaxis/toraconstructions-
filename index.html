@@ -14,6 +14,7 @@
   <link rel="icon" type="image/jpeg" href="phtoos/toraconstructionslogo.jpg">
   
   <!-- Stylesheets -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -458,7 +459,7 @@
       <div class="services-header reveal-up">
         <span class="section-subtitle">Regional Influence</span>
         <h2 class="section-title">Serving Upper Assam</h2>
-        <p class="body-large">We operate across active construction zones in Assam, ensuring quality controls and responsive support.</p>
+        <p class="body-large">We operate across key construction and development zones in Upper Assam, providing responsive support and reliable project execution.</p>
       </div>
 
       <div class="locations-container">
@@ -506,53 +507,9 @@
           </div>
         </div>
 
-        <!-- Right: SVG Map Graphic with Markers -->
-        <div class="map-visual reveal-up delay-200" id="locationsMapVisual">
-          
-          <div class="map-svg-container">
-            <!-- Simplified Upper Assam Geographical Outline SVG representation -->
-            <svg width="100%" height="100%" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M40 120 C80 90, 180 150, 240 100 C300 50, 320 120, 380 90 C390 140, 350 200, 300 210 C250 220, 120 280, 70 240 C30 200, 20 150, 40 120 Z" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.08)" stroke-width="2" stroke-dasharray="4 4" />
-              <path d="M100 160 Q180 170 300 130" stroke="rgba(216,155,13,0.15)" stroke-width="3" fill="none"/>
-            </svg>
-
-            <!-- Marker 1: Dibrugarh -->
-            <div class="map-marker active" style="top: 55%; left: 40%;" data-loc="dibrugarh" data-title="Dibrugarh (HQ)" data-details="Primary office in Udaipur. Managing 6 ongoing residential luxury villa projects and commercial sites.">
-              <div class="map-marker-dot"></div>
-              <div class="map-marker-pulse"></div>
-            </div>
-
-            <!-- Marker 2: Chabua -->
-            <div class="map-marker" style="top: 42%; left: 52%;" data-loc="chabua" data-title="Chabua Sector" data-details="Luxury duplex construction projects with premium modular interiors underway.">
-              <div class="map-marker-dot"></div>
-              <div class="map-marker-pulse"></div>
-            </div>
-
-            <!-- Marker 3: Borboruah -->
-            <div class="map-marker" style="top: 68%; left: 30%;" data-loc="borboruah" data-title="Borboruah Zone" data-details="Ongoing projects including turnkey residential complexes and architectural consultancies.">
-              <div class="map-marker-dot"></div>
-              <div class="map-marker-pulse"></div>
-            </div>
-
-            <!-- Marker 4: Sivasagar -->
-            <div class="map-marker" style="top: 75%; left: 20%;" data-loc="sivasagar" data-title="Sivasagar District" data-details="Completed premium corporate office complex and heritage home renovations.">
-              <div class="map-marker-dot"></div>
-              <div class="map-marker-pulse"></div>
-            </div>
-
-            <!-- Marker 5: Tinsukia -->
-            <div class="map-marker" style="top: 35%; left: 78%;" data-loc="tinsukia" data-title="Tinsukia Hub" data-details="High-traffic retail structure planning and active structural drafting approvals.">
-              <div class="map-marker-dot"></div>
-              <div class="map-marker-pulse"></div>
-            </div>
-          </div>
-
-          <!-- Tooltip Floating Card -->
-          <div class="glass-card map-tooltip" id="mapTooltip">
-            <h4 id="tooltipTitle">Dibrugarh</h4>
-            <p id="tooltipDetails">Loading location projects...</p>
-          </div>
-
+        <!-- Right: Leaflet Map Visual -->
+        <div class="map-visual reveal-up delay-200">
+          <div id="toraServiceMap"></div>
         </div>
 
       </div>
@@ -1007,6 +964,7 @@
   </div>
 
   <!-- Scripts -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

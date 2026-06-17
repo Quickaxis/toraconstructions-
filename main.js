@@ -206,58 +206,179 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================
-  // INTERACTIVE ASSAM LOCATIONS MAP
+  // INTERACTIVE ASSAM LOCATIONS MAP (LEAFLET)
   // ==========================================
-  const mapMarkers = document.querySelectorAll('.map-marker');
-  const locationItems = document.querySelectorAll('.location-item');
-  const mapTooltip = document.getElementById('mapTooltip');
-  const tooltipTitle = document.getElementById('tooltipTitle');
-  const tooltipDetails = document.getElementById('tooltipDetails');
-
-  const updateActiveLocation = (locationId) => {
-    // Deactivate all
-    mapMarkers.forEach(m => m.classList.remove('active'));
-    locationItems.forEach(item => item.classList.remove('active'));
-
-    // Find and activate map marker
-    const activeMarker = document.querySelector(`.map-marker[data-loc="${locationId}"]`);
-    if (activeMarker) activeMarker.classList.add('active');
-
-    // Find and activate list item
-    const activeListItem = document.querySelector(`.location-item[data-loc="${locationId}"]`);
-    if (activeListItem) activeListItem.classList.add('active');
-
-    // Update Tooltip Box
-    if (activeMarker && mapTooltip) {
-      const title = activeMarker.getAttribute('data-title');
-      const details = activeMarker.getAttribute('data-details');
-      
-      tooltipTitle.textContent = title;
-      tooltipDetails.textContent = details;
-      mapTooltip.classList.add('active');
+  const locations = [
+    {
+      slug: 'dibrugarh',
+      name: 'Dibrugarh',
+      lat: 27.4728,
+      lng: 94.9120,
+      details: 'Main service area for residential, commercial, architecture, interior, and turnkey construction projects.'
+    },
+    {
+      slug: 'chabua',
+      name: 'Chabua',
+      lat: 27.4883,
+      lng: 95.1747,
+      details: 'Construction and planning services for homes, commercial spaces, and turnkey development.'
+    },
+    {
+      slug: 'borboruah',
+      name: 'Borboruah',
+      lat: 27.4436,
+      lng: 94.9631,
+      details: 'Residential and commercial construction support with planning and execution services.'
+    },
+    {
+      slug: 'sivasagar',
+      name: 'Sivasagar',
+      lat: 26.9826,
+      lng: 94.6425,
+      details: 'Construction, renovation, architecture, and interior service coverage.'
+    },
+    {
+      slug: 'tinsukia',
+      name: 'Tinsukia',
+      lat: 27.4922,
+      lng: 95.3468,
+      details: 'Commercial, residential, interior, and turnkey construction service coverage.'
     }
-  };
+  ];
 
-  locationItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const locId = item.getAttribute('data-loc');
-      updateActiveLocation(locId);
+  const mapElement = document.getElementById('toraServiceMap');
+  if (mapElement && typeof L !== 'undefined') {
+    // Initialize Leaflet Map
+    const map = L.map('toraServiceMap', {
+      scrollWheelZoom: false,
+      zoomControl: false
     });
-  });
 
-  mapMarkers.forEach(marker => {
-    marker.addEventListener('click', () => {
-      const locId = marker.getAttribute('data-loc');
-      updateActiveLocation(locId);
-    });
-    marker.addEventListener('mouseenter', () => {
-      const locId = marker.getAttribute('data-loc');
-      updateActiveLocation(locId);
-    });
-  });
+    // Dark styled tile layer
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 20
+    }).addTo(map);
 
-  // Default active location: Dibrugarh
-  updateActiveLocation('dibrugarh');
+    L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+    const markerObjects = {};
+    const bounds = L.latLngBounds();
+
+    // Create custom divIcon markup for markers
+    const createCustomIcon = (isActive) => {
+      return L.divIcon({
+        className: `gold-map-marker ${isActive ? 'active-marker' : ''}`,
+        html: `
+          <div class="gold-marker-pin"></div>
+          <div class="gold-marker-pulse"></div>
+        `,
+        iconSize: [24, 24],
+        iconAnchor: [12, 12],
+        popupAnchor: [0, -18]
+      });
+    };
+
+    const updateActiveCardClass = (locSlug) => {
+      const locationItems = document.querySelectorAll('.location-item');
+      locationItems.forEach(item => {
+        if (item.getAttribute('data-loc') === locSlug) {
+          item.classList.add('active');
+        } else {
+          item.classList.remove('active');
+        }
+      });
+    };
+
+    // Plot markers on the map
+    locations.forEach(loc => {
+      const latLng = [loc.lat, loc.lng];
+      bounds.extend(latLng);
+
+      const marker = L.marker(latLng, {
+        icon: createCustomIcon(loc.slug === 'dibrugarh')
+      }).addTo(map);
+
+      const popupHtml = `
+        <div>
+          <h4>${loc.name}</h4>
+          <p>${loc.details}</p>
+        </div>
+      `;
+
+      marker.bindPopup(popupHtml, {
+        closeButton: true,
+        offset: L.point(0, -5)
+      });
+
+      markerObjects[loc.slug] = marker;
+
+      // Click event for markers
+      marker.on('click', () => {
+        Object.keys(markerObjects).forEach(slug => {
+          const iconElement = markerObjects[slug].getElement();
+          if (iconElement) {
+            if (slug === loc.slug) {
+              iconElement.classList.add('active-marker');
+            } else {
+              iconElement.classList.remove('active-marker');
+            }
+          }
+        });
+
+        updateActiveCardClass(loc.slug);
+        map.panTo(latLng);
+      });
+    });
+
+    // Auto fit to bounds
+    map.fitBounds(bounds, { padding: [50, 50] });
+
+    // Link location card items to map flying triggers
+    const locationItems = document.querySelectorAll('.location-item');
+    locationItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const slug = item.getAttribute('data-loc');
+        const loc = locations.find(l => l.slug === slug);
+        if (loc && markerObjects[slug]) {
+          const latLng = [loc.lat, loc.lng];
+
+          Object.keys(markerObjects).forEach(s => {
+            const iconElement = markerObjects[s].getElement();
+            if (iconElement) {
+              if (s === slug) {
+                iconElement.classList.add('active-marker');
+              } else {
+                iconElement.classList.remove('active-marker');
+              }
+            }
+          });
+
+          updateActiveCardClass(slug);
+
+          map.flyTo(latLng, 11, {
+            animate: true,
+            duration: 1.2
+          });
+
+          setTimeout(() => {
+            markerObjects[slug].openPopup();
+          }, 1000);
+        }
+      });
+    });
+
+    // Open Dibrugarh popup on load
+    setTimeout(() => {
+      if (markerObjects['dibrugarh']) {
+        markerObjects['dibrugarh'].openPopup();
+        const dbMarker = markerObjects['dibrugarh'].getElement();
+        if (dbMarker) dbMarker.classList.add('active-marker');
+      }
+    }, 1000);
+  }
+
 
   // ==========================================
   // TIMELINE ACTIVE STEP ON SCROLL

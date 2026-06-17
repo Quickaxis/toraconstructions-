@@ -1243,11 +1243,20 @@ section {
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  border: 1px solid var(--glass-border);
+}
+
+.location-item:hover {
+  transform: translateX(6px);
+  border-color: rgba(216, 155, 13, 0.2);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .location-item.active {
-  background: rgba(216, 155, 13, 0.05);
-  border-color: rgba(216, 155, 13, 0.4);
+  background: rgba(216, 155, 13, 0.06) !important;
+  border-color: var(--color-gold) !important;
+  box-shadow: 0 4px 20px rgba(216, 155, 13, 0.1);
 }
 
 .location-meta {
@@ -1279,111 +1288,135 @@ section {
 /* SVG Interactive Map Area */
 .map-visual {
   width: 100%;
-  height: 480px;
-  background: rgba(255, 255, 255, 0.02);
+  height: 520px; /* Desktop height: 520px minimum */
   border: 1px solid var(--glass-border);
-  border-radius: 36px;
+  border-radius: 28px;
   position: relative;
   overflow: hidden;
+  box-shadow: var(--shadow-premium);
+}
+
+#toraServiceMap {
+  width: 100%;
+  height: 100%;
+  background: #03080e;
+}
+
+/* Custom Gold Marker DivIcon Design */
+.gold-map-marker {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.map-svg-container {
-  width: 80%;
-  height: 80%;
   position: relative;
 }
 
-/* Grid overlay background to make it look technical and architectural */
-.map-visual::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 20px 20px;
-  pointer-events: none;
-}
-
-/* Animated radar markers */
-.map-marker {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  z-index: 10;
-}
-
-.map-marker-dot {
-  width: 100%;
-  height: 100%;
+.gold-marker-pin {
+  width: 22px;
+  height: 22px;
+  border-radius: 50% 50% 50% 0;
   background: var(--color-gold);
-  border-radius: 50%;
-  border: 2px solid #0B1F33;
-  transition: all 0.3s ease;
+  position: absolute;
+  transform: rotate(-45deg);
+  left: 50%;
+  top: 50%;
+  margin: -19px 0 0 -11px; /* offset alignment */
+  border: 2.5px solid #0B1F33;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.map-marker-pulse {
-  position: absolute;
-  top: -100%;
-  left: -100%;
-  width: 300%;
-  height: 300%;
+.gold-marker-pin::after {
+  content: '';
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
+  background: #0B1F33;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin: -4px 0 0 -4px;
+}
+
+.gold-marker-pulse {
   background: rgba(216, 155, 13, 0.2);
-  animation: pulse 2s infinite ease-out;
-  pointer-events: none;
-}
-
-.map-marker.active .map-marker-dot {
-  background: var(--color-lime);
-  transform: scale(1.4);
-}
-
-.map-marker.active .map-marker-pulse {
-  background: rgba(215, 240, 74, 0.3);
-}
-
-/* Tooltip floating card */
-.map-tooltip {
+  border-radius: 50%;
+  height: 36px;
+  width: 36px;
   position: absolute;
-  bottom: 24px;
-  left: 24px;
-  right: 24px;
-  padding: 20px 24px;
-  z-index: 20;
+  left: 50%;
+  top: 50%;
+  margin: -18px 0 0 -18px;
+  animation: marker-pulse-anim 2s infinite ease-out;
+  z-index: -1;
   pointer-events: none;
-  opacity: 0;
-  transform: translateY(10px);
-  transition: all 0.4s ease;
 }
 
-.map-tooltip.active {
-  opacity: 1;
-  transform: translateY(0);
+/* Active map marker highlight */
+.gold-map-marker.active-marker .gold-marker-pin {
+  background: var(--color-lime) !important;
+  transform: rotate(-45deg) scale(1.25) !important;
+  box-shadow: 0 4px 15px rgba(215, 240, 74, 0.4);
 }
 
-.map-tooltip h4 {
-  font-size: 16px;
-  color: var(--color-gold);
-  margin-bottom: 4px;
+.gold-map-marker.active-marker .gold-marker-pulse {
+  background: rgba(215, 240, 74, 0.3) !important;
+  height: 48px;
+  width: 48px;
+  margin: -24px 0 0 -24px;
 }
 
-.map-tooltip p {
-  font-size: 13px;
-  color: var(--text-secondary);
-  line-height: 1.4;
-}
-
-@keyframes pulse {
+@keyframes marker-pulse-anim {
   0% { transform: scale(0.3); opacity: 1; }
-  100% { transform: scale(1); opacity: 0; }
+  100% { transform: scale(1.1); opacity: 0; }
+}
+
+/* Dark themed Leaflet Popup styles */
+.leaflet-popup-content-wrapper {
+  background: rgba(11, 31, 51, 0.95) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 16px !important;
+  box-shadow: var(--shadow-premium) !important;
+  color: var(--text-primary) !important;
+  padding: 8px !important;
+  font-family: 'Inter', sans-serif !important;
+}
+
+.leaflet-popup-tip {
+  background: rgba(11, 31, 51, 0.95) !important;
+  border: 1px solid var(--glass-border) !important;
+}
+
+.leaflet-popup-content {
+  margin: 10px 14px !important;
+  line-height: 1.5 !important;
+  font-size: 13px !important;
+}
+
+.leaflet-popup-content h4 {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  color: var(--color-gold) !important;
+  margin-bottom: 6px !important;
+}
+
+.leaflet-popup-content p {
+  color: var(--text-secondary) !important;
+  font-size: 13px !important;
+  margin: 0 !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button {
+  color: var(--text-secondary) !important;
+  padding: 8px 12px 0 0 !important;
+  font-size: 18px !important;
+  transition: color 0.3s ease !important;
+}
+
+.leaflet-container a.leaflet-popup-close-button:hover {
+  color: var(--color-lime) !important;
 }
 
 @media (max-width: 1024px) {
@@ -1395,14 +1428,8 @@ section {
 
 @media (max-width: 768px) {
   .map-visual {
-    height: 350px;
+    height: 420px; /* Minimum mobile height */
     border-radius: 24px;
-  }
-  .map-tooltip {
-    bottom: 12px;
-    left: 12px;
-    right: 12px;
-    padding: 12px 16px;
   }
 }
 
