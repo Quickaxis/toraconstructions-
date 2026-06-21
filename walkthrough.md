@@ -85,17 +85,18 @@ To prevent generic low-fidelity placeholders, we integrated premium curated arch
 ## 5. Contact Section & Phone Details Updates (June 2026)
 
 *   **Global Phone Details Update:**
-    *   Replaced the old phone number `+91 96781 17192` everywhere across the website.
-    *   Configured the correct Main Number: `+91 84718 87311` (with `tel:+918471887311` links).
-    *   Configured the Alternate Number: `+91 92822 15123` (with `tel:+919282215123` links).
+    *   Cleaned up all alternate numbers (`+91 92822 15123`, `9282215123`, `+91 96781 17192`, `9678117192`) and alternate text labels across the entire website.
+    *   Configured the single correct phone number globally: `+91 84718 87311` (with `tel:+918471887311` links).
 *   **Contact Section Left Panel:**
-    *   Redesigned the "Call or WhatsApp" block to display both Main and Alternate phone numbers as clickable, distinct call links.
+    *   Redesigned the "Call or WhatsApp" block to display only the single phone number `+91 84718 87311` as a clickable call link, removing "Main Number" and "Alternate Number" sub-labels.
     *   Verified "Main Office" address and "Service Coverage" are displayed correctly.
-*   **Inquiry Form Dropdowns & Placeholders:**
+*   **Free Consultation Modal:**
+    *   Updated the main view of the Consultation modal to show only the "Free Consultation" header, the clickable button with the label "Call or WhatsApp" and number `+91 84718 87311`, and the "Book Consultation on WhatsApp" trigger.
+*   **Inquiry Form & Placeholders:**
     *   Updated the phone placeholder to `e.g. +91 84718 87311`.
     *   Cleaned and standardized the "Service Needed" dropdown options (`Residential Construction`, `Commercial Construction`, `Architecture and Planning`, `Interior Design`, `Turnkey Construction`, `Renovation and Remodeling`).
     *   Replaced `Borboruah` with `Dhemaji` inside the "Location in Assam" dropdown and updated options to match exactly (`Dibrugarh`, `Chabua`, `Dhemaji`, `Sivasagar`, `Tinsukia`, `Other parts of Assam`).
 *   **Inquiry Submission Redirect to WhatsApp:**
-    *   Reconfigured the main contact form submit listener in `main.js` to extract fields, perform client-side validation, compile a customized WhatsApp message, encode it with `encodeURIComponent`, and execute a direct redirect to the main WhatsApp number: `https://wa.me/918471887311?text=`.
+    *   Reconfigured the main contact form submit listener in `main.js` to extract fields, perform client-side validation, compile a customized WhatsApp message, encode it with `encodeURIComponent`, and execute a direct redirect to the single main WhatsApp number: `https://wa.me/918471887311?text=`.
     *   Integrated a premium loading and success state on the page post-redirection.
-    *   Updated the consultation modal form's WhatsApp endpoint to the new main number as well.
+    *   Updated the consultation modal form's WhatsApp endpoint to the single correct number as well.
