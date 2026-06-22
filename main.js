@@ -680,4 +680,60 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ==========================================
+  // GALLERY LIGHTBOX MODAL
+  // ==========================================
+  const galleryItems = document.querySelectorAll('.gallery-item');
+  const galleryLightbox = document.getElementById('galleryLightbox');
+  const galleryLightboxImg = document.getElementById('galleryLightboxImg');
+  const galleryLightboxClose = document.getElementById('galleryLightboxClose');
+  const galleryLightboxOverlay = document.getElementById('galleryLightboxOverlay');
+
+  const openGalleryLightbox = (imageSrc, imageAlt) => {
+    if (galleryLightbox && galleryLightboxImg) {
+      galleryLightboxImg.src = imageSrc;
+      galleryLightboxImg.alt = imageAlt || 'Project Gallery Image';
+      galleryLightbox.classList.add('active');
+      galleryLightbox.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
+    }
+  };
+
+  const closeGalleryLightbox = () => {
+    if (galleryLightbox) {
+      galleryLightbox.classList.remove('active');
+      galleryLightbox.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
+      // Reset source after transitions complete to avoid visual flicker next time
+      setTimeout(() => {
+        if (!galleryLightbox.classList.contains('active') && galleryLightboxImg) {
+          galleryLightboxImg.src = '';
+        }
+      }, 400);
+    }
+  };
+
+  galleryItems.forEach(item => {
+    item.addEventListener('click', () => {
+      const img = item.querySelector('.gallery-image');
+      if (img) {
+        openGalleryLightbox(img.src, img.alt);
+      }
+    });
+  });
+
+  if (galleryLightboxClose) {
+    galleryLightboxClose.addEventListener('click', closeGalleryLightbox);
+  }
+
+  if (galleryLightboxOverlay) {
+    galleryLightboxOverlay.addEventListener('click', closeGalleryLightbox);
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && galleryLightbox && galleryLightbox.classList.contains('active')) {
+      closeGalleryLightbox();
+    }
+  });
+
 });
