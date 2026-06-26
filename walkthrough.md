@@ -106,14 +106,13 @@ To prevent generic low-fidelity placeholders, we integrated premium curated arch
 ## 6. Ashok Neog Image Fit & Heights Update (June 2026)
 
 *   **Ashok Neog Image Reference:**
-    *   Updated the image source in the featured leader section of `index.html` to `phtoos/ashokneog.jpg?v=2` to ensure the new photo loads correctly and bypasses browser caching.
+    *   Updated the image source in the featured leader section of `index.html` to `phtoos/ashokneog.jpg?v=3` to bypass any browser cache.
     *   Assigned unique IDs `ashokLeadershipImage` to the image tag and `ashokLeadershipContainer` to the photo container.
 *   **Fitting and Display Styles:**
-    *   Added standard class-based overrides (`.leadership-featured img`, `.leadership-card img`, `.founder-frame img`, `#founderImage`) setting `object-fit: cover` and `object-position: center 25%`.
-    *   Added Ashok-specific overrides (`#ashokLeadershipImage`, `#founderImage`) specifying `object-fit: cover` and `object-position: center top` to keep his face perfectly visible and professional.
-    *   Added `.leadership-grid .leadership-photo` rule with `object-position: center top !important` to ensure Ramya's and Siddhartha's images are unchanged.
+    *   Added standard overrides targeting Ashok's image (`#ashokLeadershipImage`, `.leadership-featured img`, `.founder-frame img`, `#founderImage`) setting `object-fit: cover` and `object-position: center 85%` (prioritizing the lower part of the portrait showing the laptop, desk, and body, while keeping his face visible and professional).
+    *   Ensured Ramya's and Siddhartha's grid images remain completely untouched (they fallback to the default `.leadership-photo` styling which sets them to `center top`).
 *   **Image Container Responsive Heights:**
-    *   **Desktop:** Retained the default `560px` height (within the `520px` to `580px` specification range).
-    *   **Tablet:** Updated `.leadership-featured .leadership-photo-container` height in the `@media (max-width: 1024px)` query to `460px !important`.
-    *   **Mobile:** Adjusted `.leadership-featured .leadership-photo-container` height in the `@media (max-width: 480px)` query to `400px !important` (within the `380px` to `420px` mobile specifications, matching the existing `@media (max-width: 768px)` rules).
+    *   **Desktop:** Set to `580px !important` (within the `560px` to `620px` range).
+    *   **Tablet:** Updated to `500px !important` in the `@media (max-width: 1024px)` query.
+    *   **Mobile:** Adjusted to `440px !important` in both `@media (max-width: 768px)` and `@media (max-width: 480px)` queries (within the `420px` to `480px` range).
 
