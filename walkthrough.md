@@ -100,3 +100,20 @@ To prevent generic low-fidelity placeholders, we integrated premium curated arch
     *   Reconfigured the main contact form submit listener in `main.js` to extract fields, perform client-side validation, compile a customized WhatsApp message, encode it with `encodeURIComponent`, and execute a direct redirect to the single main WhatsApp number: `https://wa.me/918471887311?text=`.
     *   Integrated a premium loading and success state on the page post-redirection.
     *   Updated the consultation modal form's WhatsApp endpoint to the single correct number as well.
+
+---
+
+## 6. Ashok Neog Image Fit & Heights Update (June 2026)
+
+*   **Ashok Neog Image Reference:**
+    *   Updated the image source in the featured leader section of `index.html` to `phtoos/ashokneog.jpg?v=2` to ensure the new photo loads correctly and bypasses browser caching.
+    *   Assigned unique IDs `ashokLeadershipImage` to the image tag and `ashokLeadershipContainer` to the photo container.
+*   **Fitting and Display Styles:**
+    *   Added standard class-based overrides (`.leadership-featured img`, `.leadership-card img`, `.founder-frame img`, `#founderImage`) setting `object-fit: cover` and `object-position: center 25%`.
+    *   Added Ashok-specific overrides (`#ashokLeadershipImage`, `#founderImage`) specifying `object-fit: cover` and `object-position: center top` to keep his face perfectly visible and professional.
+    *   Added `.leadership-grid .leadership-photo` rule with `object-position: center top !important` to ensure Ramya's and Siddhartha's images are unchanged.
+*   **Image Container Responsive Heights:**
+    *   **Desktop:** Retained the default `560px` height (within the `520px` to `580px` specification range).
+    *   **Tablet:** Updated `.leadership-featured .leadership-photo-container` height in the `@media (max-width: 1024px)` query to `460px !important`.
+    *   **Mobile:** Adjusted `.leadership-featured .leadership-photo-container` height in the `@media (max-width: 480px)` query to `400px !important` (within the `380px` to `420px` mobile specifications, matching the existing `@media (max-width: 768px)` rules).
+
